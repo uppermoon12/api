@@ -217,7 +217,7 @@ export const sendingVerifCode = async (req,res)=>{
 
 const resetPassword = async(req,res)=>{
     try {
-        const {code,resetPassword,confirmPassword} = req.body.resetPassword
+        const {code,resetPassword,confirmPassword} = req.body
         const cookie = await res.cookies
         const forgetPassword = cookie.forgetPassword
         if(!forgetPassword){
