@@ -280,7 +280,7 @@ export const checked = async(req,res)=>{
 
 export const clearCheck = async(req,res)=>{
     try {
-        const cookie = req.cookies
+        const cookie = await req.cookies
         const token = cookie.token
         if(!cookie){
             return res.status(404).json({
