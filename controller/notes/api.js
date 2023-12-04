@@ -282,7 +282,7 @@ export const clearCheck = async(req,res)=>{
     try {
         const cookie = await req.cookies
         const token = cookie.token
-        if(!cookie){
+        if(!token){
             return res.status(404).json({
                 status: 'fail',
                 message: 'you must login!'
