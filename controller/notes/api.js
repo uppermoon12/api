@@ -280,7 +280,6 @@ export const checked = async(req,res)=>{
 
 export const clearCheck = async(req,res)=>{
     try {
-        const checked = req.body.checked
         const cookie = req.cookies
         const token = cookie.token
         if(!cookie){
@@ -299,11 +298,9 @@ export const clearCheck = async(req,res)=>{
             const username = decoded.username
             const user = await findUsername(username)
             const id = user.id
-            const result = await noteTables.findOne({where:{id}})
+            const result = await noteTables.findAll({where:{id}})
             if(result){
-                await result.update({
-                    checked
-                })
+                await result.destroy({where: {checked:true}})
                 const resultAll = await noteTables.findAll({order:[['createdAt','DESC']],where:{id}})
                 io.emit('getNote',resultAll)
                 return res.status(200).json({
