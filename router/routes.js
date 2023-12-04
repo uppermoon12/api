@@ -1,6 +1,6 @@
 import express from "express";
 import {deleteUser, login, register,verify} from "../controller/auth/api.js";
-import { create, deleteNote, getNote, updateNote } from "../controller/notes/api.js";
+import { checked, create, deleteNote, getNote, updateNote } from "../controller/notes/api.js";
 
 const router = express.Router();
 
@@ -11,23 +11,22 @@ router.get('/',async(req,res)=>{
         message: 'API Connected!'
     })
 })
-// router.get('/verify/:id/:token')
 
-//post
-// router.post('/register',async(req,res)=>{
-//     res.status(202).json({
-//         status: 'success',
-//         message : 'API REGISTER'
-//     })
-// });
+// get
 router.get('/verify',verify)
 router.get('/getNote',getNote)
+
+// post
 router.post('/login',login)
 router.post('/register',register)
 router.post('/createNote',create)
 
+// update
 router.put('/updateNote',updateNote)
+router.put('/updateNoteChecked',checked)
 
+
+// delete
 router.delete('/deleteNote',deleteNote)
 router.delete('/removeAccount',deleteUser)
 export default router
